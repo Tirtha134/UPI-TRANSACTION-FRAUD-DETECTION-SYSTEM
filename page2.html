@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Register</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="page" aria-labelledby="register-title">
+    <div class="container">
+      <header class="hero">
+        <svg class="icon-avatar" viewBox="0 0 64 40" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <circle cx="32" cy="10" r="6"></circle>
+          <circle cx="18" cy="14" r="4"></circle>
+          <circle cx="46" cy="14" r="4"></circle>
+          <path d="M6 34c0-6 10-10 26-10s26 4 26 10" stroke-linecap="round" stroke-linejoin="round"></path>
+        </svg>
+        <h1 id="register-title" class="title">REGISTER</h1>
+      </header>
+
+      <section class="card" aria-labelledby="register-title">
+        <div id="regError" class="error" role="alert" aria-live="polite" hidden></div>
+
+        <form id="registerForm" autocomplete="on" novalidate>
+          <label class="visually-hidden" for="name">Full Name</label>
+          <div class="field">
+            <input id="name" name="name" type="text" placeholder="Full Name" autocomplete="name" />
+          </div>
+
+          <label class="visually-hidden" for="email">Email</label>
+          <div class="field">
+            <input id="email" name="email" type="email" placeholder="Email" autocomplete="email" />
+          </div>
+
+          <label class="visually-hidden" for="phone">Phone</label>
+          <div class="field">
+            <input id="phone" name="phone" type="text" placeholder="Phone Number" inputmode="tel" autocomplete="tel" />
+          </div>
+
+          <label class="visually-hidden" for="password">Password</label>
+          <div class="field">
+            <input id="password" name="password" type="password" placeholder="Password" autocomplete="new-password" />
+          </div>
+
+          <button type="submit" class="btn-primary">REGISTER</button>
+
+          <div class="meta" style="margin-top:14px;">
+            <div style="font-size:13px;color:var(--muted)">Already have an account?</div>
+            <a href="index.html" class="link-minor">Back to Sign In</a>
+          </div>
+        </form>
+
+        <hr class="divider" />
+        <p class="signup">By registering, you agree to our <a href="#" class="link-minor">Terms & Conditions</a></p>
+      </section>
+    </div>
+  </main>
+
+  <script src="register.js" defer></script>
+</body>
+</html>
