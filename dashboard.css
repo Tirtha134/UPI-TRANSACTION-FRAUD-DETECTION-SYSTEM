@@ -1,0 +1,274 @@
+/* 🌐 General Page Style */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* 🌈 Background */
+body {
+  background: linear-gradient(to bottom right, #a1c4fd, #c2e9fb);
+  color: #0b3050;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* 🧩 Main Container */
+.dashboard-container {
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 30px;
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 15px;
+  text-align: center;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  color: #003366;
+  backdrop-filter: blur(10px);
+}
+
+/* 🏷️ Dashboard Title */
+.dashboard-title {
+  font-size: 28px;
+  margin-bottom: 25px;
+  font-weight: 700;
+  color: #00416a;
+}
+
+/* 🧠 Dashboard Cards */
+.dashboard-cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.card {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 12px;
+  padding: 20px;
+  width: 200px;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+}
+
+.card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+}
+
+.card img.icon {
+  width: 50px;
+  height: 50px;
+  margin-bottom: 10px;
+}
+
+.card h2 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 10px;
+  color: #003366;
+}
+
+.card p {
+  font-size: 0.9rem;
+  color: #084b83;
+}
+
+/* 🎯 Buttons */
+.logout-btn, .btn-primary {
+  padding: 10px 20px;
+  background: linear-gradient(180deg, #9b6fe6, #7a4fd0);
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  color: #fff;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.logout-btn:hover, .btn-primary:hover {
+  background: linear-gradient(180deg, #7a4fd0, #9b6fe6);
+  transform: translateY(-2px);
+}
+
+/* 🧍 Profile Card */
+.profile-card {
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 15px;
+  padding: 40px 20px;
+  width: 320px;
+  margin: 0 auto;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.profile-card h2 {
+  font-size: 1.4rem;
+  margin-bottom: 10px;
+  color: #00416a;
+}
+
+.profile-card p {
+  opacity: 0.9;
+  margin: 5px 0;
+  color: #03396c;
+  text-align: left;
+}
+
+/* 💳 Payment Form */
+.payment-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+}
+
+.payment-form input,
+.payment-form select {
+  width: 100%;
+  padding: 12px 15px;
+  border-radius: 10px;
+  border: none;
+  outline: none;
+  background: rgba(255, 255, 255, 0.9);
+  color: #03396c;
+  font-size: 1rem;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.payment-form input::placeholder {
+  color: #666;
+}
+
+.payment-form input:focus,
+.payment-form select:focus {
+  transform: scale(1.02);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* 🔘 Button Group for Payment Page */
+.button-group {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+  margin-top: 20px;
+  width: 100%;
+}
+
+/* Fraud Check (Pink) */
+.btn-danger {
+  flex: 1;
+  background: linear-gradient(135deg, #ff5c8d, #ff3370);
+  border: none;
+  border-radius: 8px;
+  padding: 12px 0;
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.btn-danger:hover {
+  background: linear-gradient(135deg, #ff3370, #ff5c8d);
+  transform: translateY(-2px);
+}
+
+/* Clear Button (Sky Blue) */
+.btn-primary {
+  flex: 1;
+  background: linear-gradient(135deg, #00b4d8, #0096c7);
+  border: none;
+  border-radius: 8px;
+  padding: 12px 0;
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.btn-primary:hover {
+  background: linear-gradient(135deg, #0096c7, #00b4d8);
+  transform: translateY(-2px);
+}
+
+/* Logout (Dark Blue) */
+.btn-logout {
+  margin-top: 30px;
+  background: linear-gradient(135deg, #003366, #001f54);
+  border: none;
+  border-radius: 8px;
+  padding: 12px 35px;
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.btn-logout:hover {
+  background: linear-gradient(135deg, #001f54, #003366);
+  transform: translateY(-3px);
+}
+
+/* 📊 Transaction Table */
+.transaction-table {
+  width: 90%;
+  max-width: 800px;
+  margin: 20px auto;
+  border-collapse: collapse;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.2);
+}
+
+.transaction-table th,
+.transaction-table td {
+  padding: 15px;
+  text-align: center;
+}
+
+.transaction-table th {
+  background: #89c4f4;
+  font-weight: 600;
+  color: #003366;
+}
+
+.transaction-table tr:nth-child(even) {
+  background: #e0f2ff;
+}
+
+.transaction-table td {
+  opacity: 0.95;
+  color: #084b83;
+}
+
+/* 📱 Responsive */
+@media (max-width: 768px) {
+  .dashboard-cards {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .card,
+  .payment-form input {
+    width: 90%;
+  }
+
+  .dashboard-container {
+    width: 90%;
+    padding: 25px;
+  }
+
+  .button-group {
+    flex-direction: column;
+  }
+
+  .btn-danger, .btn-primary {
+    width: 100%;
+  }
+}
