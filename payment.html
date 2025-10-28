@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UPISafe - Enter Transaction Details</title>
+  <link rel="stylesheet" href="dashboard.css">
+</head>
+<body>
+  <div class="dashboard-container">
+    <h1 class="dashboard-title">Enter Transaction Details</h1>
+
+    <form id="paymentForm" class="payment-form">
+      <div class="field">
+        <input type="number" name="amount" placeholder="Amount (e.g., 500.00)" required>
+      </div>
+      <div class="field">
+        <input type="text" name="date" placeholder="Date (DD/MM/YYYY)" required>
+      </div>
+      <div class="field">
+        <input type="text" name="time" placeholder="Time (24 Hour - HH:MM)" required>
+      </div>
+      <div class="field">
+        <select name="platform" required>
+          <option value="" disabled selected>Transaction Platform</option>
+          <option value="Google Pay">Google Pay</option>
+          <option value="PhonePe">PhonePe</option>
+          <option value="Paytm">Paytm</option>
+          <option value="BHIM">BHIM</option>
+        </select>
+      </div>
+
+      <div class="button-group">
+        <button type="submit" class="btn-danger">Check for Fraud</button>
+        <button type="button" id="clearBtn" class="btn-primary">Clear</button>
+      </div>
+    </form>
+
+    <button onclick="goToPage('dashboard.html')" class="btn-logout">Logout</button>
+  </div>
+
+  <script src="payment.js" defer></script>
+</body>
+</html>
