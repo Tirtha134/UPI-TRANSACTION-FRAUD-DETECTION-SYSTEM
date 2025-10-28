@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>User Dashboard</title>
+  <link rel="stylesheet" href="dashboard.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="dashboard-container">
+    <h1 class="dashboard-title">User Dashboard</h1>
+
+    <div class="dashboard-cards">
+      <div class="card" onclick="goToPage('profile.html')">
+        <img src="https://cdn-icons-png.flaticon.com/512/1946/1946429.png" alt="Profile Icon" class="icon">
+        <h2>Your Profile</h2>
+        <p>View and manage your account details.</p>
+      </div>
+
+      <div class="card" onclick="goToPage('payment.html')">
+        <img src="https://cdn-icons-png.flaticon.com/512/1570/1570887.png" alt="Payment Icon" class="icon">
+        <h2>Predict Payment Status</h2>
+        <p>Check the safety and status of your UPI payments instantly</p>
+      </div>
+
+      <div class="card" onclick="goToPage('transactions.html')">
+        <img src="https://cdn-icons-png.flaticon.com/512/1570/1570909.png" alt="History Icon" class="icon">
+        <h2>Transaction History</h2>
+        <p>Review all your past transactions.</p>
+      </div>
+    </div>
+
+    <button id="logoutBtn" class="logout-btn">Logout</button>
+  </div>
+
+  <script src="dashboard.js" defer></script>
+</body>
+</html>
