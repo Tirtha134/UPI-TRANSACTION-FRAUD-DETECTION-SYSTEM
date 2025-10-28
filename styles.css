@@ -129,6 +129,7 @@ input:focus{
   font-size:13px;
 }
 
+
 /* responsive */
 @media (min-width:640px){
   .container{width:380px;}
