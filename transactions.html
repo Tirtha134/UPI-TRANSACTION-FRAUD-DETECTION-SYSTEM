@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Transaction History</title>
+  <link rel="stylesheet" href="dashboard.css">
+</head>
+<body>
+  <div class="dashboard-container">
+    <h1 class="dashboard-title">Transaction History</h1>
+
+    <table class="transaction-table">
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>UPI ID</th>
+          <th>Amount</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody id="transactionBody"></tbody>
+    </table>
+
+    <button onclick="goToPage('dashboard.html')" class="btn-primary" style="margin-top:10px;">Back to Dashboard</button>
+  </div>
+
+  <script src="transactions.js" defer></script>
+</body>
+</html>
