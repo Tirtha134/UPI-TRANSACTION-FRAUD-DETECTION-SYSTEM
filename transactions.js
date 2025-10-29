@@ -12,7 +12,6 @@ transactions.forEach(tx => {
   const row = document.createElement("tr");
   row.innerHTML = `
     <td>${tx.date}</td>
-    <td>${tx.upi}</td>
     <td>${tx.amount}</td>
     <td>${tx.status}</td>
   `;
