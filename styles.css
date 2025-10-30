@@ -134,3 +134,22 @@ input:focus{
 @media (min-width:640px){
   .container{width:380px;}
 }
+
+
+#register-title {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: #ffffff;
+  text-shadow: 0 0 10px rgba(0, 200, 255, 0.8);
+  transition: transform 0.3s ease, text-shadow 0.3s ease;
+  text-align: center;
+  margin-top: 10px;
+}
+
+#register-title:hover {
+  transform: scale(1.05);
+  text-shadow: 0 0 20px rgba(0, 255, 255, 1);
+}
