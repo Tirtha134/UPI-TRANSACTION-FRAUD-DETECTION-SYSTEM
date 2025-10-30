@@ -1,63 +1,108 @@
+//  Run this code only after the entire HTML content has loaded
 document.addEventListener('DOMContentLoaded', function () {
-  const signinForm = document.getElementById('signinForm');
-  const resetForm = document.getElementById('resetForm');
-  const errorEl = document.getElementById('error');
-  const resetMsg = document.getElementById('resetMsg');
-  const forgot = document.getElementById('forgot');
-  const signup = document.getElementById('signup');
 
-  const showError = (el, msg) => { el.hidden = false; el.textContent = msg; };
-  const clearError = (el) => { if (el) { el.hidden = true; el.textContent = ''; } };
+  // Grab important HTML elements by their IDs
+  const signinForm = document.getElementById('signinForm'); // Sign-in form
+  const resetForm = document.getElementById('resetForm');   // Reset password form (if exists)
+  const errorEl = document.getElementById('error');         // Error message box
+  const resetMsg = document.getElementById('resetMsg');     // Message box for reset form
+  const forgot = document.getElementById('forgot');         // "Forgot Password" link
+  const signup = document.getElementById('signup');         // "Signup" link
 
+
+  //Function to show error messages in a specific element
+  const showError = (el, msg) => {
+    el.hidden = false;         // Make the element visible
+    el.textContent = msg;      // Display the given message
+  };
+
+
+  // Function to hide and clear an error message
+  const clearError = (el) => {
+    if (el) {                  // Make sure element exists
+      el.hidden = true;        // Hide the element
+      el.textContent = '';     // Clear previous text
+    }
+  };
+
+
+  //  Function to check if a string is a valid email address
   const isEmail = s => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(s);
+
+
+  // Function to check if a string is a valid phone number
+  // Removes spaces, dashes, and parentheses first
   const isPhone = s => /^(\+?\d{7,15})$/.test(s.replace(/[()\s-]/g, ''));
 
-  // ✅ Sign In Form
-  if (signinForm) {
-    signinForm.addEventListener('submit', e => {
-      e.preventDefault();
 
+  //  --- SIGN IN FORM SECTION ---
+  if (signinForm) {                  // Only run this part if signinForm exists
+    signinForm.addEventListener('submit', e => {
+      e.preventDefault();            // Stop the form from refreshing the page
+
+      //  Get user input values (email/phone and password)
       const user = signinForm.user.value.trim();
       const pass = signinForm.pass.value.trim();
 
-      if (!user) return showError(errorEl, 'Enter email or phone.');
-      if (!(isEmail(user) || isPhone(user))) return showError(errorEl, 'Invalid email or phone.');
-      if (!pass) return showError(errorEl, 'Enter password.');
+      //  Validate the fields one by one
+      if (!user) return showError(errorEl, 'Enter email or phone.'); // If empty
+      if (!(isEmail(user) || isPhone(user))) return showError(errorEl,  'Invalid email or phone.'); // If invalid
+      if (!pass) return showError(errorEl, 'Enter password.');   // If password is missing
 
-      // ✅ Show success message
-      clearError(errorEl);
-      errorEl.hidden = false;
-      errorEl.style.background = 'rgba(0,255,128,0.05)';
-      errorEl.style.borderLeftColor = 'rgba(0,255,128,0.8)';
-      errorEl.style.color = '#fff';
-      errorEl.textContent = 'Login successful';
+      //  If all validations pass, show success message
+      clearError(errorEl);                        // Remove old errors
+      errorEl.hidden = false;                     // Make it visible again
+      errorEl.style.background = 'rgba(0,255,128,0.05)';  // Light green background
+      errorEl.style.borderLeftColor = 'rgba(0,255,128,0.8)'; // Green border
+      errorEl.style.color = '#fff';               // White text
+      errorEl.textContent = 'Login successful';   // Message text
 
-      // ✅ Redirect to dashboard
+      //  Wait 1 second, then do login success actions
       setTimeout(() => {
-        localStorage.setItem('isLoggedIn', 'true');
-        signinForm.reset();
-        window.location.replace('dashboard.html'); // ✅ replaces current history entry
+        localStorage.setItem('isLoggedIn', 'true');   // Save login state in localStorage
+        signinForm.reset();                           // Clear form fields
+        window.location.replace('dashboard.html');    // Redirect to dashboard page
+        // "replace" means the user cannot go back to login using the back button
       }, 1000);
     });
   }
 
-  // ✅ Reset Password Form
-  if (resetForm) {
+  // -- RESET PASSWORD FORM SECTION ---
+  if (resetForm) { // Run only if the reset form exists
     resetForm.addEventListener('submit', e => {
-      e.preventDefault();
-      const email = resetForm.email.value.trim();
+      e.preventDefault(); // Prevent normal form submission
+
+      const email = resetForm.email.value.trim(); // Get entered email/phone
+
+      //  If field is empty, show an error message
       if (!email) {
         resetMsg.textContent = 'Please enter your email or phone.';
-        resetMsg.style.color = '#ffd2d2';
-        return;
+        resetMsg.style.color = '#ffd2d2'; // Light red text color
+        return; // Stop further execution
       }
-      resetMsg.style.color = '#e6ffd8';
+
+      //  If input exists, show success message
+      resetMsg.style.color = '#e6ffd8'; // Light green text
       resetMsg.textContent = 'If that account exists, a reset link has been sent.';
+
+      //  After 2.2 seconds, redirect back to sign-in page
       setTimeout(() => window.location.replace('index.html'), 2200);
     });
   }
 
-  // ✅ Optional demo links
-  if (forgot) forgot.addEventListener('click', e => { e.preventDefault(); window.location.href = 'page1.html'; });
-  if (signup) signup.addEventListener('click', e => { e.preventDefault(); alert('Signup link clicked — add signup page.'); });
+  //  --- OPTIONAL LINKS SECTION ---
+
+  // "Forgot Password?" link — go to reset page manually
+  if (forgot)
+    forgot.addEventListener('click', e => {
+      e.preventDefault(); // Stop default link behavior
+      window.location.href = 'page1.html'; // Redirect to reset page
+    });
+
+  // "Signup" link — show a placeholder message for now
+  if (signup)
+    signup.addEventListener('click', e => {
+      e.preventDefault(); // Stop default link action
+      alert('Signup link clicked — add signup page.'); // Placeholder alert
+    });
 });
