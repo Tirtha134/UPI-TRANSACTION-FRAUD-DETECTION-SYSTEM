@@ -2,7 +2,7 @@ import pickle
 from flask import Flask,jsonify,request
 import numpy as np
 
-model = pickle.load(open('fraud_detector_2.pkl','rb'))
+model_R_F = pickle.load(open('fraud_detector_R_F.pkl','rb'))
 app = Flask(__name__)
 
 @app.route('/', methods=['POST'])
@@ -13,6 +13,8 @@ def predict():
     fl_vr = request.form.get('fail')
     ty_vr = request.form.get('type')
     de_vr = request.form.get('device')
+    amount_vr = request.form.get('amount')
+    hour_vr = request.form.get('hour')
 
     if in_vr.lower() == 'yes':
         in_vr = 1
@@ -40,15 +42,37 @@ def predict():
     elif de_vr.lower() == 'mobile':
         de_vr = 2
 
-    pred = model.predict(np.array([[in_vr,fl_vr,ty_vr,de_vr]]))
-    pred_score = model.predict_proba(np.array([[in_vr, fl_vr, ty_vr, de_vr]]))
+    if amount_vr == '' or amount_vr is None:
+        return jsonify({
+            'Value Error'
+        })
+    elif int(amount_vr) < 0:
+        return jsonify({
+            'Value Error'
+        })
+    else:
+        am_vr = int(amount_vr)
 
-    fin_res = pred[0]
-    risk_score = pred_score[0][1]
+    if hour_vr == '' or hour_vr is None:
+        return jsonify({
+            'Value Error'
+        })
+    elif int(hour_vr) < 0:
+        return jsonify({
+            'Value Error'
+        })
+    else:
+        hr_vr = int(hour_vr)
+
+    pred_R_F = model_R_F.predict(np.array([[am_vr,in_vr,fl_vr,ty_vr,de_vr,hr_vr]]))
+    pred_score_R_F = model_R_F.predict_proba(np.array([[am_vr,in_vr, fl_vr, ty_vr, de_vr,hr_vr]]))
+
+    fin_res_R_F = pred_R_F[0]
+    risk_score_R_F = pred_score_R_F[0][1]
 
     return jsonify({
-        'Fraud Result': str(fin_res),
-        'Risk Score': str(int(risk_score*100))
+        'Fraud Result': str(fin_res_R_F==1),
+        'Risk Score': str(int(risk_score_R_F*100))
     })
 if __name__ == "__main__":
     app.run()
