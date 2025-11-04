@@ -2,7 +2,7 @@ import pickle
 from flask import Flask,jsonify,request
 import numpy as np
 
-model_R_F = pickle.load(open('fraud_detector_R_F.pkl','rb'))
+model_D_T = pickle.load(open('fraud_detector_D_T.pkl','rb'))
 app = Flask(__name__)
 
 @app.route('/', methods=['POST'])
@@ -64,15 +64,17 @@ def predict():
     else:
         hr_vr = int(hour_vr)
 
-    pred_R_F = model_R_F.predict(np.array([[am_vr,in_vr,fl_vr,ty_vr,de_vr,hr_vr]]))
-    pred_score_R_F = model_R_F.predict_proba(np.array([[am_vr,in_vr, fl_vr, ty_vr, de_vr,hr_vr]]))
+    pred_D_T = model_D_T.predict(np.array([[am_vr,in_vr,fl_vr,ty_vr,de_vr,hr_vr]]))
+    pred_score_D_T = model_D_T.predict_proba(np.array([[am_vr,in_vr, fl_vr, ty_vr, de_vr,hr_vr]]))
 
-    fin_res_R_F = pred_R_F[0]
-    risk_score_R_F = pred_score_R_F[0][1]
+    fin_res_D_T = pred_D_T[0]
+    risk_score_D_T = pred_score_D_T[0][1]
+    print("Fraud Result: ",fin_res_D_T==1)
+    print("Risk Score: ",int(risk_score_D_T*100))
 
     return jsonify({
-        'Fraud Result': str(fin_res_R_F==1),
-        'Risk Score': str(int(risk_score_R_F*100))
+        'Fraud Result': str(fin_res_D_T==1),
+        'Risk Score': str(int(risk_score_D_T*100))
     })
 if __name__ == "__main__":
     app.run()
