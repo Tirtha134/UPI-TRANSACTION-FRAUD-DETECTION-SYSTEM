@@ -4,15 +4,6 @@ import numpy as np
 
 model_D_T = pickle.load(open('fraud_detector_D_T.pkl','rb'))
 app = Flask(__name__)
-@app.route('/', methods=['GET'])
-def home():
-    print('Hi Welcome!')
-    print('Request_Result: Connected')
-    print('Next_Actions: Get Data from Users')
-    return jsonify({
-        'Request_Result': str("Connected"),
-        'Next_Actions': str("Get Data from Users")
-    })
 
 @app.route('/', methods=['POST'])
 def predict():
@@ -23,7 +14,7 @@ def predict():
     ty_vr = request.form.get('type')
     de_vr = request.form.get('device')
     amount_vr = request.form.get('amount')
-    hour_vr = request.form.get('time')
+    hour_vr = request.form.get('hour')
 
     if in_vr.lower() == 'yes':
         in_vr = 1
@@ -53,38 +44,37 @@ def predict():
 
     if amount_vr == '' or amount_vr is None:
         return jsonify({
-            'Value Error': str(1)
+            'Value Error'
         })
     elif int(amount_vr) < 0:
         return jsonify({
-            'Value Error': str(1)
+            'Value Error'
         })
     else:
         am_vr = int(amount_vr)
 
     if hour_vr == '' or hour_vr is None:
         return jsonify({
-            'Value Error': str(2)
+            'Value Error'
         })
     elif int(hour_vr) < 0:
         return jsonify({
-            'Value Error': str(3)
+            'Value Error'
         })
     else:
         hr_vr = int(hour_vr)
 
-    input = np.array([[am_vr,in_vr,ty_vr,fl_vr,de_vr,hr_vr]])
-    pred_D_T = model_D_T.predict(input)
-    pred_score_D_T = model_D_T.predict_proba(input)
+    pred_D_T = model_D_T.predict(np.array([[am_vr,in_vr,fl_vr,ty_vr,de_vr,hr_vr]]))
+    pred_score_D_T = model_D_T.predict_proba(np.array([[am_vr,in_vr, fl_vr, ty_vr, de_vr,hr_vr]]))
 
     fin_res_D_T = pred_D_T[0]
     risk_score_D_T = pred_score_D_T[0][1]
-    print("Fraud_Result: ",fin_res_D_T==1)
-    print("Risk_Score: ",int(risk_score_D_T*100))
+    print("Fraud Result: ",fin_res_D_T==1)
+    print("Risk Score: ",int(risk_score_D_T*100))
 
     return jsonify({
-        'Fraud_Result': str(fin_res_D_T==1),
-        'Risk_Score': str(int(risk_score_D_T*100))
+        'Fraud Result': str(fin_res_D_T==1),
+        'Risk Score': str(int(risk_score_D_T*100))
     })
 if __name__ == "__main__":
     app.run()
