@@ -111,12 +111,11 @@ input:focus{
   text-decoration: none;
   font-size:13px;
 }
-.link-minor:hover{text-decoration:underline;}
 
 /* divider and signup */
 .divider{border:none;height:1px;background:rgba(255,255,255,0.12);margin:16px 0;border-radius:2px;}
 .signup{font-size:13px;color:var(--muted);margin:8px 0;}
-.signup a{color:#fff;text-decoration:underline;font-weight:600;}
+.signup a{color:#fff;font-weight:600;}
 
 /* alert */
 .error{
@@ -128,7 +127,6 @@ input:focus{
   border:1px solid rgba(255,100,100,0.14);
   font-size:13px;
 }
-
 
 /* responsive */
 @media (min-width:640px){
@@ -149,7 +147,19 @@ input:focus{
   margin-top: 10px;
 }
 
-#register-title:hover {
+/* small links styling */
+.link-minor {
+  color: #fff;           /* white color */
+  font-weight: 600;       /* bold */
+  text-decoration: none;  /* no underline */
+  font-size: 13px;
+  transition: all 0.3s ease;
+  display: inline-block;
+}
+
+/* hover effect for small links */
+.link-minor:hover {
+  color: #00ffff; /* neon cyan */
+  text-shadow: 0 0 8px rgba(0, 255, 255, 0.8);
   transform: scale(1.05);
-  text-shadow: 0 0 20px rgba(0, 255, 255, 1);
 }
