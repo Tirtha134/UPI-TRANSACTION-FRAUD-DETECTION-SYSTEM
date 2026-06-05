@@ -58,6 +58,12 @@
     }
 
     // Simulated registration success
+    localStorage.setItem('profileData', JSON.stringify({
+  name,
+  email,
+  phone,
+  registrationTimestamp: new Date().toLocaleString()
+}));
     clearError();                              // Clear any existing error message
     alert('Registration successful (demo). Redirecting to Sign In...'); // Show success popup
     form.reset();                              // Clear all form fields
